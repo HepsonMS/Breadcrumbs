@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "549548529107",
+    "firebase_url": "https://breadcrumbs-95242.firebaseio.com",
+    "project_id": "breadcrumbs-95242",
+    "storage_bucket": "breadcrumbs-95242.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:549548529107:android:f7fe049be4530dab",
+        "android_client_info": {
+          "package_name": "com.segfault.android.breadcrumbs"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "549548529107-ovpa4c5ev9e79ffalmlkjcv11pkrb4j0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBK-kd_YrRNAio5cNtNxIpYcWZDhspYU4Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "549548529107-ovpa4c5ev9e79ffalmlkjcv11pkrb4j0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
