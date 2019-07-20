@@ -9,6 +9,7 @@ import android.Manifest;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
@@ -26,10 +27,25 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.firebase.FirebaseError;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 public class SearchMapActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -38,9 +54,35 @@ public class SearchMapActivity extends FragmentActivity implements OnMapReadyCal
     LocationRequest mLocationRequest;
 
     private FusedLocationProviderClient mFusedLocationClient;
+    List<LatLng> mLatLngArrayList = new ArrayList<LatLng>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        FirebaseDatabase.getInstance().getReference()
+            .child("travelerRoutes").child("test_user")
+            .addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    Double mLatitude = 0.0;
+                    for (DataSnapshot children : dataSnapshot.getChildren()) {
+                        for (DataSnapshot coordinate : children.getChildren()) {
+                            if(coordinate.getKey().equals("Latitude")) {
+                                mLatitude = (Double) coordinate.getValue();
+                            } else {
+                                LatLng ll = new LatLng(mLatitude, (Double) coordinate.getValue());
+                                System.out.println("#####: "+ll.toString());
+                                mLatLngArrayList.add(ll);
+                            }
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
         setContentView(R.layout.activity_search_map);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -49,7 +91,6 @@ public class SearchMapActivity extends FragmentActivity implements OnMapReadyCal
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
     }
-
 
     /**
      * Manipulates the map once available.
@@ -73,6 +114,39 @@ public class SearchMapActivity extends FragmentActivity implements OnMapReadyCal
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             } else {
                 checkLocationPermission();
+            }
+        }
+        String markerTitle = "";
+        float hueColor = 0;
+        System.out.println("#####: " + mLatLngArrayList.size());
+        for (int i = 0; i < mLatLngArrayList.size(); i++) {
+            if (i == 0) {
+                markerTitle = "Marked Start Point";
+                hueColor = BitmapDescriptorFactory.HUE_GREEN;
+            } else if (i == (mLatLngArrayList.size() - 1)) {
+                markerTitle = "Marked End Point";
+                hueColor = BitmapDescriptorFactory.HUE_RED;
+            } else {
+                markerTitle = "Marked Middle Point";
+                hueColor = BitmapDescriptorFactory.HUE_AZURE;
+            }
+            Marker m = mMap.addMarker(new MarkerOptions()
+                    .position(mLatLngArrayList.get(i))
+                    .title(markerTitle)
+                    .icon(BitmapDescriptorFactory.defaultMarker(hueColor)));
+            if (i > 0) {
+                Polyline pl = mMap.addPolyline(new PolylineOptions()
+                        .add(mLatLngArrayList.get(i - 1), mLatLngArrayList.get(i))
+                        .width(3)
+                        .color(Color.RED));
+            }
+            if (i == (mLatLngArrayList.size()-1)) {
+                googleMap.addCircle(new CircleOptions()
+                    .center(mLatLngArrayList.get(i))
+                    .radius(1000)
+                    .strokeColor(Color.BLACK)
+                    .fillColor(0x22ff0000)
+                    .strokeWidth(2));
             }
         }
     }
