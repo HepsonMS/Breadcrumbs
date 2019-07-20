@@ -101,9 +101,10 @@ public class SetRouteActivity extends FragmentActivity implements OnMapReadyCall
                 GeoFire geoFire = new GeoFire(ref);
                 System.out.println("######: " + mapMarkers.size());
                 for(int i=0; i<mapMarkers.size(); i++) {
-                    geoFire.setLocation("user1",
-                        new GeoLocation(mapMarkers.get(i).getPosition().latitude,
-                        mapMarkers.get(i).getPosition().longitude));
+                    DatabaseReference current_db = FirebaseDatabase.getInstance().getReference();
+                    //current_db = current_db.child("travelerRoutes").child("test_user").child("marker"+(i+1))
+                    //    .child(mapMarkers.get(i).getPosition().latitude);
+                    //current_db.setValue(true);
                 }
             }
         });
