@@ -80,25 +80,24 @@ public class ContactListActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String text = mPhoneText.getText().toString();
-                mPhoneText.setText("");
-                if (numList.size() < 3) {
-                    if (!numList.contains(text)) {
-                        numList.add(text);
-                        if (mFirstButton.getText() == "None") {
-                            mFirstButton.setText(text);
-                            mFirstButton.setVisibility(View.VISIBLE);
-                        }
-                        else if (mSecondButton.getText() == "None") {
-                            mSecondButton.setText(text);
-                            mSecondButton.setVisibility(View.VISIBLE);
-                        }
-                        else{//numList.size() == 2
-                            mThirdButton.setText(text);
-                            mThirdButton.setVisibility(View.VISIBLE);
+                if ((text.matches("[0-9]+")) & (text.length() <= 15) & (text.length() >= 10)) {
+                    mPhoneText.setText("");
+                    if (numList.size() < 3) {
+                        if (!numList.contains(text)) {
+                            numList.add(text);
+                            if (mFirstButton.getText() == "None") {
+                                mFirstButton.setText(text);
+                                mFirstButton.setVisibility(View.VISIBLE);
+                            } else if (mSecondButton.getText() == "None") {
+                                mSecondButton.setText(text);
+                                mSecondButton.setVisibility(View.VISIBLE);
+                            } else {//numList.size() == 2
+                                mThirdButton.setText(text);
+                                mThirdButton.setVisibility(View.VISIBLE);
+                            }
                         }
                     }
                 }
-            }
         });
     }
 
