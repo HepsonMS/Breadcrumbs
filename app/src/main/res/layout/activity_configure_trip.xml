@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#8BC34A"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".ConfigureTripActivity">
+
+    <EditText
+        android:id="@+id/timer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/timer"
+        android:importantForAutofill="no"
+        android:inputType="" />
+
+    <EditText
+        android:id="@+id/where_going"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Where Are You Going?"
+        android:inputType="" />
+
+    <Button
+        android:id="@+id/start_trip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/start_trip" />
+</LinearLayout>
