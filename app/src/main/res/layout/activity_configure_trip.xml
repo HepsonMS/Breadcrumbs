@@ -21,9 +21,14 @@
         android:id="@+id/where_going"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Where Are You Going?"
+        android:hint="@string/where_are_you_going"
         android:inputType="" />
 
+    <Button
+        android:id="@+id/set_route"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/set_route" />
     <Button
         android:id="@+id/start_trip"
         android:layout_width="match_parent"

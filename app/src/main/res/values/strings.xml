@@ -5,4 +5,11 @@
     <string name="timer">Timer</string>
     <string name="search_for_person">Search For Person</string>
     <string name="title_activity_search_map">Map</string>
+    <string name="where_are_you_going">Where Are You Going?</string>
+    <string name="set_route">Set Route</string>
+    <string name="title_activity_set_route">Map</string>
+    <string name="start_point">Start Point</string>
+    <string name="intermediate_point">Intermediate Point</string>
+    <string name="end_point">End Point</string>
+    <string name="save_route">Save Route</string>
 </resources>

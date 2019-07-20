@@ -27,11 +27,14 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCw3rCdLGmw_qDY4yjXg0nK1iX4rDBMV0o" />
+            android:value="@string/google_maps_key" />
 
         <activity
+            android:name=".SetRouteActivity"
+            android:label="@string/title_activity_set_route"></activity>
+        <activity
             android:name=".SearchMapActivity"
-            android:label="@string/title_activity_search_map"></activity>
+            android:label="@string/title_activity_search_map" />
         <activity android:name=".ConfigureTripActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
