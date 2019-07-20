@@ -43,17 +43,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        setContentView(R.layout.activity_main);
-        boolean isConn = isConnected(getApplicationContext());
+        //setContentView(R.layout.activity_main);
+        /*boolean isConn = isConnected(getApplicationContext());
         isWifiConnected(getApplicationContext());
 
         TextView textView1;
         textView1 = findViewById(R.id.textview1);
         textView1.setText("Signal: " + valueOf(isConn));
 
-        mPhoneStateListener = new MyPhoneStateListener();
-        mTelephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-        mTelephonyManager.listen(mPhoneStateListener, PhoneStateListener.LISTEN_SIGNAL_STRENGTHS);
+        //mPhoneStateListener = new MyPhoneStateListener();
+        //mTelephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+        //mTelephonyManager.listen(mPhoneStateListener, PhoneStateListener.LISTEN_SIGNAL_STRENGTHS);*/
     }
     public static boolean isConnected(Context context) {
         ConnectivityManager cm =

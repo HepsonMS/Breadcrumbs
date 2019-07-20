@@ -12,4 +12,11 @@
     <string name="intermediate_point">Intermediate Point</string>
     <string name="end_point">End Point</string>
     <string name="save_route">Save Route</string>
+    <string name="any_additional_notes">Any Additional Notes?</string>
+    <string name="contact_friends">Contacts</string>
+    <string name="contact_authorities">Authorities</string>
+    <string name="preferences">Preferences</string>
+    <string name="phoneNumber">Enter phone number</string>
+    <string name="Add">Add</string>
+    <string name="None">None</string>
 </resources>

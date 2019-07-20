@@ -98,13 +98,12 @@ public class SetRouteActivity extends FragmentActivity implements OnMapReadyCall
             @Override
             public void onClick(View v) {
                 DatabaseReference ref = FirebaseDatabase.getInstance().getReference("travelerRoutes");
-                GeoFire geoFire = new GeoFire(ref);
-                System.out.println("######: " + mapMarkers.size());
                 for(int i=0; i<mapMarkers.size(); i++) {
                     DatabaseReference current_db = FirebaseDatabase.getInstance().getReference();
-                    //current_db = current_db.child("travelerRoutes").child("test_user").child("marker"+(i+1))
-                    //    .child(mapMarkers.get(i).getPosition().latitude);
-                    //current_db.setValue(true);
+                    current_db = current_db.child("travelerRoutes").child("test_user").child("marker"+(i+1));
+
+                    current_db.child("Latitude").setValue(mapMarkers.get(i).getPosition().latitude);
+                    current_db.child("Longitude").setValue(mapMarkers.get(i).getPosition().longitude);
                 }
             }
         });

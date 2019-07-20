@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+ <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#8BC34A"
     android:orientation="vertical"
-    android:gravity="center"
     tools:context=".ConfigureTripActivity">
 
     <EditText
@@ -15,7 +14,7 @@
         android:layout_height="wrap_content"
         android:hint="@string/timer"
         android:importantForAutofill="no"
-        android:inputType="" />
+        android:inputType="datetime" />
 
     <EditText
         android:id="@+id/where_going"
@@ -29,9 +28,31 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/set_route" />
+    <EditText
+        android:id="@+id/notes"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:inputType="textCapSentences|textMultiLine"
+        android:maxLines ="4"
+        android:maxLength ="2000"
+        android:hint ="@string/any_additional_notes">
+    </EditText>
+    <Button
+        android:layout_gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/contactBtn"
+        android:text="@string/contact_friends"/>
+    <CheckBox
+        android:id="@+id/authoritiesCheck"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/contact_authorities"/>
     <Button
         android:id="@+id/start_trip"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="#F44336"
         android:text="@string/start_trip" />
 </LinearLayout>
