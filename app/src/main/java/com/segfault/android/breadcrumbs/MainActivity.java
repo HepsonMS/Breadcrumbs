@@ -15,6 +15,8 @@ import static java.lang.String.valueOf;
 
 public class MainActivity extends AppCompatActivity {
 
+    TelephonyManager mTelephonyManager;
+    MyPhoneStateListener mPhoneStateListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,11 +29,9 @@ public class MainActivity extends AppCompatActivity {
         textView1 = findViewById(R.id.textview1);
         textView1.setText(valueOf(isConn));
 
-        //MyPhoneStateListener mPhoneStateListener;
-        //Telep
-        //mPhoneStateListener = new MyPhoneStateListener();
-        //mTelephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-        //mTelephonyManager.listen(mPhoneStatelistener, PhoneStateListener.LISTEN_SIGNAL_STRENGTHS);
+        mPhoneStateListener = new MyPhoneStateListener();
+        mTelephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+        mTelephonyManager.listen(mPhoneStateListener, PhoneStateListener.LISTEN_SIGNAL_STRENGTHS);
     }
 
     public static boolean isConnected(Context context) {
